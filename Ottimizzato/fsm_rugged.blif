@@ -1,0 +1,68 @@
+.model fsm
+.inputs INIT RESET SA1 SA0 TS
+.outputs START MOD1 MOD0 ALM
+.latch    [13] LatchOut_v5   0
+.latch    [14] LatchOut_v6   0
+.start_kiss
+.i 5
+.o 4
+.p 20
+.s 4
+.r ONOFF
+0---- ONOFF ONOFF 0000
+1-01- ONOFF SG 0000
+1-00- ONOFF OPT 0000
+1-10- ONOFF FG 0000
+0---- SG ONOFF 0010
+1101- SG SG 0010
+1001- SG SG 1010
+1-00- SG OPT 0010
+1-10- SG FG 0010
+0---- OPT ONOFF 0100
+1-01- OPT SG 0100
+1100- OPT OPT 0100
+1000- OPT OPT 1100
+1-10- OPT FG 0100
+0---- FG ONOFF 0110
+1-01- FG SG 0110
+1-00- FG OPT 0110
+1110- FG FG 0110
+10101 FG FG 1111
+10100 FG FG 1110
+.end_kiss
+.latch_order LatchOut_v5 LatchOut_v6
+.code ONOFF 00
+.code SG 10
+.code OPT 11
+.code FG 01
+.names INIT RESET SA1 SA0 [13] LatchOut_v5 LatchOut_v6 START
+-0-0111 1
+101--01 1
+10-1-10 1
+.names LatchOut_v5 LatchOut_v6 MOD0
+01 1
+10 1
+.names INIT RESET SA1 TS LatchOut_v5 LatchOut_v6 ALM
+101101 1
+.names INIT SA1 [13]
+10 1
+.names INIT SA0 [14]
+10 1
+.names LatchOut_v6 MOD1
+1 1
+.exdc 
+.inputs INIT RESET SA1 SA0 TS LatchOut_v5 LatchOut_v6
+.outputs [13] [14] START MOD1 MOD0 ALM
+.names INIT SA1 SA0 [13]
+111 1
+.names INIT SA1 SA0 [14]
+111 1
+.names INIT SA1 SA0 START
+111 1
+.names INIT SA1 SA0 MOD1
+111 1
+.names INIT SA1 SA0 MOD0
+111 1
+.names INIT SA1 SA0 ALM
+111 1
+.end

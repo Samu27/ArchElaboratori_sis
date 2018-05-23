@@ -1,0 +1,90 @@
+.model CONTROLLO_MOTORE
+.inputs INIT RESET RPM12 RPM11 RPM10 RPM9 RPM8 RPM7 RPM6 RPM5 RPM4 RPM3 RPM2 \
+RPM1 RPM0
+.outputs NUMB7 NUMB6 NUMB5 NUMB4 NUMB3 NUMB2 NUMB1 NUMB0 MOD1 MOD0 ALM
+.latch    [13] LatchOut_v5   0
+.latch    [14] MOD1   0
+.latch    M1_7 NUMB7 re NIL 0
+.latch    M1_6 NUMB6 re NIL 0
+.latch    M1_5 NUMB5 re NIL 0
+.latch    M1_4 NUMB4 re NIL 0
+.latch    M1_3 NUMB3 re NIL 0
+.latch    M1_2 NUMB2 re NIL 0
+.latch    M1_1 NUMB1 re NIL 0
+.latch    M1_0 NUMB0 re NIL 1
+.names LatchOut_v5 MOD1 MOD0
+01 1
+10 1
+.names INIT RESET NUMB7 NUMB6 NUMB5 NUMB4 SA1 LatchOut_v5 MOD1 ALM
+101---101 1
+10-1--101 1
+10--1-101 1
+10---1101 1
+.names RPM12 RPM11 RPM6 RPM5 RPM4 RPM3 RPM2 RPM1 RPM0 [102] SA1
+1--------- 1
+-11------0 1
+-1-11----0 1
+-1-1-1---0 1
+-1-1--1--0 1
+-1-1---1-0 1
+-1-1----10 1
+.names RPM12 RPM11 RPM6 RPM5 RPM4 [102] SA0
+000--- 1
+00---1 1
+00-00- 1
+.names INIT RESET SA1 SA0 [13] LatchOut_v5 MOD1 START
+-0-0111 1
+101--01 1
+10-1-10 1
+.names INIT SA1 [13]
+10 1
+.names INIT SA0 [14]
+10 1
+.names NUMB7 NUMB6 START [113] M1_7
+1-1- 1
+-1-1 1
+.names NUMB6 START [185] [106] [113] M1_6
+--1-- 1
+0---1 1
+11-1- 1
+.names NUMB7 NUMB6 [113] [185]
+111 1
+.names START NUMB5 C4 [185] M1_5
+---1 1
+101- 1
+110- 1
+.names NUMB4 NUMB3 NUMB2 [103] C4
+1110 1
+.names START NUMB4 NUMB3 M1_3 M1_0 C4 [185] M1_4
+------1 1
+11---0- 1
+--1000- 1
+.names START NUMB3 NUMB2 NUMB1 M1_2 M1_0 M1_3
+-1--1- 1
+110--- 1
+-0-100 1
+.names NUMB0 START [185] M1_0
+0-- 1
+-0- 1
+--1 1
+.names NUMB2 START [185] [103] M1_2
+--1- 1
+11-1 1
+01-0 1
+.names NUMB1 START M1_0 [103] M1_1
+--01 1
+111- 1
+.names RPM10 RPM9 RPM8 RPM7 [102]
+0--- 1
+-0-- 1
+--0- 1
+---0 1
+.names NUMB1 NUMB0 [103]
+0- 1
+-0 1
+.names NUMB5 C4 [106]
+0- 1
+-0 1
+.names START [106] [113]
+10 1
+.end

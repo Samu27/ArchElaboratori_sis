@@ -1,0 +1,77 @@
+.model DATAPATH
+.inputs RPM12 RPM11 RPM10 RPM9 RPM8 RPM7 RPM6 RPM5 RPM4 RPM3 RPM2 RPM1 RPM0 \
+START
+.outputs NUMB7 NUMB6 NUMB5 NUMB4 NUMB3 NUMB2 NUMB1 NUMB0 SA1 SA0 TS
+.latch    M1_7 NUMB7 re NIL 0
+.latch    M1_6 NUMB6 re NIL 0
+.latch    M1_5 NUMB5 re NIL 0
+.latch    M1_4 NUMB4 re NIL 0
+.latch    M1_3 NUMB3 re NIL 0
+.latch    M1_2 NUMB2 re NIL 0
+.latch    M1_1 NUMB1 re NIL 0
+.latch    M1_0 NUMB0 re NIL 1
+.names RPM12 RPM11 RPM6 RPM5 RPM4 RPM3 RPM2 RPM1 RPM0 [180] SA1
+1--------- 1
+-11------0 1
+-1-11----0 1
+-1-1-1---0 1
+-1-1--1--0 1
+-1-1---1-0 1
+-1-1----10 1
+.names RPM12 RPM11 RPM6 RPM5 RPM4 [180] SA0
+000--- 1
+00---1 1
+00-00- 1
+.names NUMB7 NUMB6 NUMB5 NUMB4 TS
+1--- 1
+-1-- 1
+--1- 1
+---1 1
+.names START NUMB7 NUMB6 [181] M1_7
+11-- 1
+1-10 1
+.names START NUMB6 [181] [185] M1_6
+---1 1
+111- 1
+100- 1
+.names START NUMB5 C4 [185] M1_5
+---1 1
+101- 1
+110- 1
+.names START NUMB4 NUMB3 M1_3 M1_0 C4 [185] M1_4
+------1 1
+11---0- 1
+--1000- 1
+.names START NUMB3 NUMB2 NUMB1 M1_2 M1_0 M1_3
+-1--1- 1
+110--- 1
+-0-100 1
+.names START NUMB2 [183] [185] M1_2
+---1 1
+111- 1
+100- 1
+.names START NUMB1 M1_0 [183] M1_1
+--01 1
+111- 1
+.names START NUMB0 COUT M1_0
+0-- 1
+-0- 1
+--1 1
+.names NUMB7 NUMB6 [181] COUT
+110 1
+.names NUMB4 NUMB3 NUMB2 [183] C4
+1110 1
+.names RPM10 RPM9 RPM8 RPM7 [180]
+0--- 1
+-0-- 1
+--0- 1
+---0 1
+.names NUMB5 C4 [181]
+0- 1
+-0 1
+.names NUMB1 NUMB0 [183]
+0- 1
+-0 1
+.names START COUT [185]
+11 1
+.end
