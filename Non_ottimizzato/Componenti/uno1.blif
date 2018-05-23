@@ -1,0 +1,8 @@
+#Generazione di un valore costante a 1 (di un bit)
+.model UNO1
+.outputs uscita
+
+.names uscita
+1
+
+.end

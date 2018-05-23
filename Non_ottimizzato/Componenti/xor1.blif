@@ -1,0 +1,11 @@
+#XOR a 1 bit
+
+.model XOR1
+.inputs A B
+.outputs X
+
+.names A B X
+10 1
+01 1
+
+.end

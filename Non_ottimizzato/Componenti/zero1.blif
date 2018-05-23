@@ -1,0 +1,6 @@
+#Generazione di un valore costante a 0 (di un bit)
+.model ZERO1
+.outputs uscita
+.names uscita
+
+.end

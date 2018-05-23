@@ -1,0 +1,60 @@
+.model DATAPATH
+.inputs RPM12 RPM11 RPM10 RPM9 RPM8 RPM7 RPM6 RPM5 RPM4 RPM3 RPM2 RPM1 RPM0 START
+.outputs NUMB7 NUMB6 NUMB5 NUMB4 NUMB3 NUMB2 NUMB1 NUMB0 SA1 SA0 TS
+
+#Definizione costanti in lettere, numero per i bit
+.subckt ZERO1 uscita=ZERO
+
+.subckt QUINDICI8 O7=C15_7 O6=C15_6 O5=C15_5 O4=C15_4 O3=C15_3 O2=C15_2 O1=C15_1 O0=C15_0
+
+.subckt UNO8 O7=C1_7 O6=C1_6 O5=C1_5 O4=C1_4 O3=C1_3 O2=C1_2 O1=C1_1 O0=C1_0
+
+.subckt DUECENTOCINQUANTACINQUE8 O7=C255_7 O6=C255_6 O5=C255_5 O4=C255_4 O3=C255_3 O2=C255_2 O1=C255_1 O0=C255_0
+
+.subckt DUEMILA13 O12=C2000_12 O11=C2000_11 O10=C2000_10 O9=C2000_9 O8=C2000_8 O7=C2000_7 O6=C2000_6 O5=C2000_5 O4=C2000_4 O3=C2000_3 O2=C2000_2 O1=C2000_1 O0=C2000_0
+
+.subckt QUATTROMILA13 O12=C4000_12 O11=C4000_11 O10=C4000_10 O9=C4000_9 O8=C4000_8 O7=C4000_7 O6=C4000_6 O5=C4000_5 O4=C4000_4 O3=C4000_3 O2=C4000_2 O1=C4000_1 O0=C4000_0
+
+
+#Istanziazione del multiplexer che seleziona tra 0 ed il valore corrente del contatore
+.subckt MUX8 A7=M2_7 A6=M2_6 A5=M2_5 A4=M2_4 A3=M2_3 A2=M2_2 A1=M2_1 A0=M2_0 B7=C1_7 B6=C1_6 B5=C1_5 B4=C1_4 B3=C1_3 B2=C1_2 B1=C1_1 B0=C1_0 S=START O7=M1_7 O6=M1_6 O5=M1_5 O4=M1_4 O3=M1_3 O2=M1_2 O1=M1_1 O0=M1_0
+                        
+
+#Istanziazione del registro che memorizza il valore del contatore
+.subckt REGISTRO8 A7=M1_7 A6=M1_6 A5=M1_5 A4=M1_4 A3=M1_3 A2=M1_2 A1=M1_1 A0=M1_0 O7=NUMB7 O6=NUMB6 O5=NUMB5 O4=NUMB4 O3=NUMB3 O2=NUMB2 O1=NUMB1 O0=NUMB0
+
+
+#Istanziazione del sommatore che incrementa di 1 il valore del registro ad ogni ciclo di clock
+.subckt SOMMATORE8 A7=NUMB7 A6=NUMB6 A5=NUMB5 A4=NUMB4 A3=NUMB3 A2=NUMB2 A1=NUMB1 A0=NUMB0 B7=C1_7 B6=C1_6 B5=C1_5 B4=C1_4 B3=C1_3 B2=C1_2 B1=C1_1 B0=C1_0 CIN=ZERO O7=S7 O6=S6 O5=S5 O4=S4 O3=S3 O2=S2 O1=S1 O0=S0 COUT=COUT
+
+
+#Istanziazione del multiplexer che seleziona tra il valore corrente del contatore e 255
+.subckt MUX8 A7=C255_7 A6=C255_6 A5=C255_5 A4=C255_4 A3=C255_3 A2=C255_2 A1=C255_1 A0=C255_0 B7=S7 B6=S6 B5=S5 B4=S4 B3=S3 B2=S2 B1=S1 B0=S0 S=COUT O7=M2_7 O6=M2_6 O5=M2_5 O4=M2_4 O3=M2_3 O2=M2_2 O1=M2_1 O0=M2_0
+
+
+#Istanziazione del maggiore che verifica se il valore del registro (NUMB) è superiore a 15
+.subckt MAGGIORE8 A7=NUMB7 A6=NUMB6 A5=NUMB5 A4=NUMB4 A3=NUMB3 A2=NUMB2 A1=NUMB1 A0=NUMB0 B7=C15_7 B6=C15_6 B5=C15_5 B4=C15_4 B3=C15_3 B2=C15_2 B1=C15_1 B0=C15_0 O=TS
+
+
+.subckt MAGGIORE13 A12=RPM12 A11=RPM11 A10=RPM10 A9=RPM9 A8=RPM8 A7=RPM7 A6=RPM6 A5=RPM5 A4=RPM4 A3=RPM3 A2=RPM2 A1=RPM1 A0=RPM0 B12=C4000_12 B11=C4000_11 B10=C4000_10 B9=C4000_9 B8=C4000_8 B7=C4000_7 B6=C4000_6 B5=C4000_5 B4=C4000_4 B3=C4000_3 B2=C4000_2 B1=C4000_1 B0=C4000_0 O=SA1
+
+
+.subckt MAGGIORE13 A12=C2000_12 A11=C2000_11 A10=C2000_10 A9=C2000_9 A8=C2000_8 A7=C2000_7 A6=C2000_6 A5=C2000_5 A4=C2000_4 A3=C2000_3 A2=C2000_2 A1=C2000_1 A0=C2000_0 B12=RPM12 B11=RPM11 B10=RPM10 B9=RPM9 B8=RPM8 B7=RPM7 B6=RPM6 B5=RPM5 B4=RPM4 B3=RPM3 B2=RPM2 B1=RPM1 B0=RPM0 O=SA0
+
+
+#File che contengono i vari modelli
+.search Componenti/duecentocinquantacinque8.blif
+.search Componenti/duemila13.blif
+.search Componenti/maggiore8.blif
+.search Componenti/maggiore13.blif
+.search Componenti/mux8.blif
+.search Componenti/quattromila13.blif
+.search Componenti/quindici8.blif
+.search Componenti/registro8.blif
+.search Componenti/sommatore8.blif
+.search Componenti/uno1.blif
+.search Componenti/uno8.blif
+.search Componenti/xor1.blif
+.search Componenti/zero1.blif
+
+.end
