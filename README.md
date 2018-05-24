@@ -25,6 +25,9 @@ Il rilevatore manda un valore RPM al secondo. Tale valore fa parte degli ingress
 - 2000 ≤ RPM ≤ 4000 → OPT
 - RPM > 4000 → FG
 
+
+Per maggiori informazioni: [relazione.pdf](relazione.pdf)
+
 ### Autori
 
 * **Samuele Mori** - [Samu27](https://github.com/Samu27)
